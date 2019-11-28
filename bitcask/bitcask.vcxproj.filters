@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{40a16128-4705-4068-bb84-4071ba5e4be8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="file">
+      <UniqueIdentifier>{20c62858-ab93-4baf-8c54-72b705d6371f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{38c09aeb-711c-4f82-bddf-fc00e21e50b7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\env.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="file\posix_file.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="util\lock.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\coding.h">
+      <Filter>util</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cc" />
+    <ClCompile Include="file\posix_file.cc">
+      <Filter>file</Filter>
+    </ClCompile>
+    <ClCompile Include="util\coding.cc">
+      <Filter>util</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
