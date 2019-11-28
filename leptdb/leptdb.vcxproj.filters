@@ -9,5 +9,8 @@
     <ClInclude Include="base\Slice.h">
       <Filter>base</Filter>
     </ClInclude>
+    <ClInclude Include="base\Options.h">
+      <Filter>base</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
