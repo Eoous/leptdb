@@ -9,12 +9,13 @@
 
 namespace leptdb {
 	class Arena {
+	public:
 		Arena();
 		~Arena();
 
 		auto allocate(size_t bytes);
 
-		auto allocateAligned(size_t bytes);
+		char* allocateAligned(size_t bytes);
 
 		auto memoryUsage() const {
 			return reinterpret_cast<uintptr_t>(memory_usage_.NoBarrier_Load());

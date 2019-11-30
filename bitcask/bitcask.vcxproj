@@ -79,6 +79,7 @@
     <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemGroup>
+    <ClInclude Include="db\db_impl.h" />
     <ClInclude Include="file\file.h" />
     <ClInclude Include="file\posix_file.h" />
     <ClInclude Include="include\comparator.h" />
@@ -95,6 +96,7 @@
     <ClInclude Include="util\random.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="db\db_impl.cc" />
     <ClCompile Include="file\posix_file.cc" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="util\arena.cc" />
@@ -104,6 +106,9 @@
     <ClCompile>
       <CppLanguageStandard>c++17</CppLanguageStandard>
     </ClCompile>
+    <Link>
+      <LibraryDependencies>pthread</LibraryDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

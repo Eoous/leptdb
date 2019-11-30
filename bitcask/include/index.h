@@ -5,6 +5,11 @@
 namespace leptdb {
 	class Index {
 	public:
+
+		Index() {
+			
+		}
+		
 		Index(std::string key)
 			:key_(key) {
 			
@@ -30,7 +35,7 @@ namespace leptdb {
 		auto dataSize() const { return key_size_ + value_size_; }
 
 		uint32_t indexSize() const {
-			return key_size + sizeof(uint32_t) * 3 + sizeof uint64_t;
+			return key_size_ + sizeof(uint32_t) * 3 + sizeof (uint64_t);
 		}
 
 		auto setDeleted() {

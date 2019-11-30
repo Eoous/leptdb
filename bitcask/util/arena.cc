@@ -30,7 +30,7 @@ namespace leptdb {
 		return result;
 	}
 
-	auto Arena::allocateAligned(size_t bytes) {
+	char* Arena::allocateAligned(size_t bytes) {
 		constexpr int align = (sizeof(void*)) > 8 ? sizeof(void*) : 8;
 		assert((align & (align - 1)) == 0);
 		size_t current_mod = reinterpret_cast<uintptr_t>(alloc_ptr_)& (align - 1);
@@ -45,7 +45,7 @@ namespace leptdb {
 		else {
 			result = allocateFallback(bytes);
 		}
-		assert(reinterpret_cast<uintptr_t>(result)& (align - 1) == 0);
+		assert((reinterpret_cast<uintptr_t>(result)& (align - 1)) == 0);
 		return result;
 	}
 

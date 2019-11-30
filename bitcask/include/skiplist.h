@@ -184,7 +184,7 @@ namespace leptdb {
 	template<typename Key, class Comparator>
 	typename SkipList<Key, Comparator>::Node*
 		SkipList<Key, Comparator>::NewNode(const Key& key, int height) {
-		char* mem = arena_.AllocateAligned(
+		char* mem = arena_.allocateAligned(
 			sizeof(Node) + sizeof(port::AtomicPointer) * (height - 1));
 		return new (mem) Node(key);
 	}
@@ -346,7 +346,7 @@ namespace leptdb {
 		// here since Insert() is externally synchronized.
 		Node* prev[kMaxHeight];
 
-		lock_.Lock();
+		lock_.lock();
 		Node* x = FindGreaterOrEqual(key, prev);
 
 		int height = RandomHeight();
@@ -368,7 +368,7 @@ namespace leptdb {
 
 		if (x != nullptr && Equal(key, x->key)) {
 			x->key = key;
-			lock_.Unlock();
+			lock_.unlock();
 			return;
 		}
 
@@ -379,7 +379,7 @@ namespace leptdb {
 			x->NoBarrier_SetNext(i, prev[i]->NoBarrier_Next(i));
 			prev[i]->SetNext(i, x);
 		}
-		lock_.Unlock();
+		lock_.unlock();
 	}
 
 	template<typename Key, class Comparator>

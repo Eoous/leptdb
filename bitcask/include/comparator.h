@@ -26,7 +26,7 @@ namespace leptdb {
 		}
 
 		auto operator()(const std::string& a,const std::string& b) const {
-			return memcmp(a.data(), b.data());
+			return strcmp(a.data(), b.data());
 		}
 
 
