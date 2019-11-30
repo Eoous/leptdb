@@ -10,6 +10,9 @@
     <Filter Include="util">
       <UniqueIdentifier>{38c09aeb-711c-4f82-bddf-fc00e21e50b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="port">
+      <UniqueIdentifier>{02f0aa36-a52d-4356-8d6f-0dfd96478ed5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\env.h">
@@ -42,6 +45,18 @@
     <ClInclude Include="include\skiplist.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="util\arena.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="port\atomic_pointer.h">
+      <Filter>port</Filter>
+    </ClInclude>
+    <ClInclude Include="util\random.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\hash.h">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cc" />
@@ -49,6 +64,9 @@
       <Filter>file</Filter>
     </ClCompile>
     <ClCompile Include="util\coding.cc">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\arena.cc">
       <Filter>util</Filter>
     </ClCompile>
   </ItemGroup>

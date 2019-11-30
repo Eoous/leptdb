@@ -83,12 +83,17 @@
     <ClInclude Include="include\index.h" />
     <ClInclude Include="include\options.h" />
     <ClInclude Include="include\skiplist.h" />
+    <ClInclude Include="port\atomic_pointer.h" />
+    <ClInclude Include="util\arena.h" />
     <ClInclude Include="util\coding.h" />
+    <ClInclude Include="util\hash.h" />
     <ClInclude Include="util\lock.h" />
+    <ClInclude Include="util\random.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="file\posix_file.cc" />
     <ClCompile Include="main.cc" />
+    <ClCompile Include="util\arena.cc" />
     <ClCompile Include="util\coding.cc" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
