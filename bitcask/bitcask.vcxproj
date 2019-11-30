@@ -77,7 +77,12 @@
   <ItemGroup>
     <ClInclude Include="file\file.h" />
     <ClInclude Include="file\posix_file.h" />
+    <ClInclude Include="include\comparator.h" />
+    <ClInclude Include="include\db.h" />
     <ClInclude Include="include\env.h" />
+    <ClInclude Include="include\index.h" />
+    <ClInclude Include="include\options.h" />
+    <ClInclude Include="include\skiplist.h" />
     <ClInclude Include="util\coding.h" />
     <ClInclude Include="util\lock.h" />
   </ItemGroup>

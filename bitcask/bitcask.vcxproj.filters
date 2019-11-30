@@ -27,6 +27,21 @@
     <ClInclude Include="util\coding.h">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="include\index.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\comparator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\options.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\skiplist.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cc" />
