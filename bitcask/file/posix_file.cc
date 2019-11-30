@@ -18,8 +18,8 @@ PosixFile::~PosixFile() {
 
 bool PosixFile::read(uint64_t offset, uint32_t n, char* buf) {
 	if(offset>file_offset_) {
-		
-		if (uint32_t pos = offset - file_offset_; pos > map_size_) {
+		uint32_t pos = offset - file_offset_;
+		if (pos > map_size_) {
 			return false;
 		}
 		else {
@@ -27,7 +27,8 @@ bool PosixFile::read(uint64_t offset, uint32_t n, char* buf) {
 		}
 	}
 	else {
-		if(auto read = pread(fd_, buf, n, offset); read<0) {
+		auto read = pread(fd_, buf, n, offset);
+		if( read<0 ) {
 			return false;
 		}
 	}
@@ -69,6 +70,7 @@ bool PosixFile::appendIndex(const std::string& key,
 							uint32_t file_index, uint64_t file_offset, 
 							uint32_t key_size,uint32_t value_size) {
 	uint32_t index_size = key.size() + sizeof(uint32_t) * 4 + sizeof(uint64_t);
+	char index_buf[index_size];
 	encodeIndex(index_buf, key, file_index,
 				file_offset, key_size, value_size);
 

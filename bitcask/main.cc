@@ -3,7 +3,7 @@
 
 using namespace std;
 
-auto main() {
+auto main() -> int {
 
 	return 0;
 }

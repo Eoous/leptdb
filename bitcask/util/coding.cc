@@ -17,7 +17,7 @@ namespace leptdb{
 		return;
 	}
 
-	auto encodeIndex(char* buf, 
+	auto encodeIndex(char* buf, const std::string& key,
 					 uint32_t file_index, uint64_t file_offset, 
 					 uint32_t key_size,uint32_t value_size) -> void {
 		assert(buf);
@@ -25,20 +25,20 @@ namespace leptdb{
 
 		auto index_size = key_size + sizeof(uint32_t) * 3 + sizeof(uint64_t);
 
-		memcpy(buf, &index_size, sizeof uint32_t);
-		pos += sizeof uint32_t;
-		memcpy(buf + pos, &file_index, sizeof uint32_t);
-		pos += sizeof uint32_t;
+		memcpy(buf, &index_size, sizeof (uint32_t));
+		pos += sizeof (uint32_t);
+		memcpy(buf + pos, &file_index, sizeof (uint32_t));
+		pos += sizeof (uint32_t);
 
 		memcpy(buf + pos, &file_offset, sizeof(uint64_t));
-		pos += sizeof uint64_t;
+		pos += sizeof (uint64_t);
 
-		memcpy(buf + pos, &key_size, sizeof uint32_t);
-		pos += sizeof uint32_t;
+		memcpy(buf + pos, &key_size, sizeof (uint32_t));
+		pos += sizeof (uint32_t);
 
 		memcpy(buf + pos, key.data(), key_size);
 		pos += key_size;
-		memcpy(buf + pos, &value_size, sizeof uint32_t);
+		memcpy(buf + pos, &value_size, sizeof (uint32_t));
 
 		return;
 	}
@@ -50,13 +50,13 @@ namespace leptdb{
 		size_t pos = 0;
 
 		*file_index = decodeFixed32(buf);
-		pos += sizeof uint32_t;
+		pos += sizeof (uint32_t);
 
 		*file_offset = decodeFixed64(buf + pos);
-		pos += sizeof uint64_t;
+		pos += sizeof (uint64_t);
 
 		*key_size = decodeFixed32(buf + pos);
-		pos += sizeof uint32_t;
+		pos += sizeof (uint32_t);
 
 		*key = std::string(buf + pos, *key_size);
 		pos += *key_size;
