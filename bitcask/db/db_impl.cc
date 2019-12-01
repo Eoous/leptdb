@@ -30,6 +30,8 @@ bool DBImpl::put(const std::string& key, const std::string& value) {
 	uint8_t file_index = (cursor & (max_file_ - 1));
 	auto data_file = data_files_[file_index];
 	uint64_t file_offset;
+
+	// key - value write into the file with fd
 	auto s = data_file->appendData(key, value, &file_offset);
 	if(likely(s)) {
 		auto index_file = index_files_[file_index];
