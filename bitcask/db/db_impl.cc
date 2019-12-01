@@ -168,7 +168,7 @@ bool DB::open(const std::string& dbname, const Options& options, DB*& dbref) {
 		File* file;
 		auto s = Env::newFile(data_file, file);
 		if (s) {
-			impl->data_files_.push_back(file);
+			impl->data_files_.emplace_back(file);
 		}
 		else {
 			return false;
