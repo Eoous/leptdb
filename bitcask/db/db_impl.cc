@@ -89,7 +89,9 @@ bool DBImpl::remove(const std::string& key) {
 
 auto DBImpl::indexCallback(File* file) {
 	uint64_t file_offset = file->fileOffset();
-	if (file_offset != 0) { // Load index files into skiplist
+	
+	// Load index files into skiplist
+	if (file_offset != 0) { 
 		uint64_t pos = 0;
 		while (pos < file_offset) {
 			char size_buf[sizeof(uint32_t)];
@@ -117,14 +119,14 @@ auto DBImpl::indexCallback(File* file) {
 }
 
 auto DBImpl::recover() {
-	std::vector<std::thread > threads;
-	for (uint32_t i = 0; i < max_file_; i++) {
+	std::vector<std::thread> threads;
+	for (uint32_t i = 0; i < max_file_; ++i) {
 		std::thread recover(&DBImpl::indexCallback, this, index_files_[i]);
-		threads.push_back(std::move(recover));
+		threads.emplace_back(std::move(recover));
 	}
 
-	for (uint32_t i = 0; i < max_file_; i++) {
-		threads[i].join();
+	for (auto& it: threads) {
+		it.join();
 	}
 	return true;
 }
@@ -181,7 +183,7 @@ bool DB::open(const std::string& dbname, const Options& options, DB*& dbref) {
 		File* file;
 		auto s = Env::newFile(index_file, file);
 		if (s) {
-			impl->index_files_.push_back(file);
+			impl->index_files_.emplace_back(file);
 		}
 		else {
 			return false;
