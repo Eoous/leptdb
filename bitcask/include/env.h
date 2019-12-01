@@ -14,7 +14,7 @@ namespace leptdb {
 		Env(){}
 		virtual ~Env(){}
 
-		static auto newFile(const std::string& fname,File** file) {
+		static auto newFile(const std::string& fname,File*& file) {
 			auto fd = ::open(fname.data(), O_RDWR | O_CREAT | O_APPEND, 0645);
 			if(fd<0) {
 				file = nullptr;
@@ -22,8 +22,8 @@ namespace leptdb {
 			}
 			else {
 				uint64_t offset;
-				getFileSize(fname, &offset);
-				*file = new PosixFile(fd, fname, offset);
+				getFileSize(fname, offset);
+				file = new PosixFile(fd, fname, offset);
 				return true;
 			}
 		}
@@ -46,14 +46,14 @@ namespace leptdb {
 			}
 		}
 
-		static bool getFileSize(const std::string& fname,uint64_t* size) {
+		static bool getFileSize(const std::string& fname,uint64_t& size) {
 			struct stat sbuf;
 			if(stat(fname.data(),&sbuf)!=0) {
-				*size = 0;
+				size = 0;
 				return false;
 			}
 			else {
-				*size = sbuf.st_size;
+				size = sbuf.st_size;
 			}
 			return true;
 		}

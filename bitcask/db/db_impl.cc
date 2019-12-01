@@ -145,7 +145,7 @@ bool DB::open(const std::string& dbname, const Options& options, DB*& dbref) {
 	// Create skiplist tables
 	for (uint32_t i = 0; i < impl->table_size_; ++i) {
 		Table* table = new Table(Compare(options.comparator_));
-		impl->tables_.push_back(table);
+		impl->tables_.emplace_back(table);
 	}
 
 	// Create data directory
@@ -166,7 +166,7 @@ bool DB::open(const std::string& dbname, const Options& options, DB*& dbref) {
 	for (uint32_t i = 1; i <= impl->max_file_; i++) {
 		std::string data_file = data_dir + dataFileName + std::to_string(i);
 		File* file;
-		auto s = Env::newFile(data_file, &file);
+		auto s = Env::newFile(data_file, file);
 		if (s) {
 			impl->data_files_.push_back(file);
 		}
@@ -179,7 +179,7 @@ bool DB::open(const std::string& dbname, const Options& options, DB*& dbref) {
 	for (uint32_t i = 1; i <= impl->max_file_; i++) {
 		std::string index_file = data_dir + indexFileName + std::to_string(i);
 		File* file;
-		auto s = Env::newFile(index_file, &file);
+		auto s = Env::newFile(index_file, file);
 		if (s) {
 			impl->index_files_.push_back(file);
 		}
