@@ -96,6 +96,7 @@ auto DBImpl::indexCallback(File* file) {
 		while (pos < file_offset) {
 			char size_buf[sizeof(uint32_t)];
 			auto s = file->read(pos, sizeof(uint32_t), size_buf);
+			// finish loading one index
 			if (s) {
 				pos += sizeof(uint32_t);
 				uint32_t index_size = decodeFixed32(size_buf);
